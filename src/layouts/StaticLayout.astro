@@ -1,11 +1,11 @@
 ---
-import StaticHeader from "../components/StaticHeader.astro";
 import Footer from "../components/Footer.astro";
 import BaseLayout from "./BaseLayout.astro";
+import Header from "../components/Header.astro";
 ---
 
 <BaseLayout title={Astro.props.title}>
-  <StaticHeader />
+  <Header static={true} />
   <main class="container mx-auto flex-grow px-4 py-8">
     <slot />
   </main>
