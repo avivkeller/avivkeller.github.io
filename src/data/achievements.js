@@ -31,10 +31,12 @@ export default [
   },
   {
     title: "CVE-2024-39700",
+    icon: "simple-icons:jupyter",
     url: "https://github.com/jupyterlab/extension-template/security/advisories/GHSA-45gq-v5wm-82wg",
   },
   {
     title: "CVE-2024-28866",
+    icon: "simple-icons:gocd",
     url: "https://github.com/gocd/gocd/security/advisories/GHSA-q882-q6mm-mgvh",
   },
   {
