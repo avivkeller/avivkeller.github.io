@@ -28,6 +28,11 @@ export default [
     image: keyframedLogo,
   },
   {
+    title: "rollup-plugin-tidy-templates",
+    description: "A Rollup plugin that removes specific tagged template expressions",
+    githubLink: "https://github.com/avivkeller/rollup-plugin-tidy-templates",
+  },
+  {
     title: "Artificial Intelligence Restriction License",
     description:
       "A license that allows creators to share open-source software while restricting its use in AI development and training without explicit consent.",
