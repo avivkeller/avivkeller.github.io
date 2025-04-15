@@ -138,4 +138,9 @@ export default [
     icon: "simple-icons:barclays",
     url: "https://barclays.responsibledisclosure.com/hc/en-us/articles/4412349666579-Acknowledgments",
   },
+  {
+    title: "Platform.sh Hall of Fame",
+    icon: "simple-icons:platformdotsh",
+    url: "https://platform.sh/.well-known/security.txt",
+  },
 ];
