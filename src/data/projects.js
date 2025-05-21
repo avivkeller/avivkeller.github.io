@@ -22,6 +22,11 @@ export default [
     website: "https://gora.apache.org",
   },
   {
+    title: "unicode-case-folding",
+    description: "Unicode case folding utilities based on the official Unicode Character Database",
+    githubLink: "https://github.com/avivkeller/unicode-case-folding",
+  },
+  {
     title: "Videos in CSS",
     description: "A script that converts videos into pure CSS keyframes",
     githubLink: "https://github.com/avivkeller/keyframed-videos",
