@@ -23,6 +23,11 @@ export const projects: Project[] = [
     website: "https://gora.apache.org",
   },
   {
+    title: "mdast-util-slice-markdown",
+    description: "A powerful, highly configurable TypeScript library for slicing markdown Abstract Syntax Trees (AST) by character position.",
+    githubLink: "https://github.com/avivkeller/mdast-util-slice-markdown"
+  },
+  {
     title: "unicode-case-folding",
     description:
       "Unicode case folding utilities based on the official Unicode Character Database",
