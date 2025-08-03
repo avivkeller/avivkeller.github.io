@@ -1,22 +1,20 @@
 ---
-import { Icon } from "astro-icon/components";
+import Button from "../components/ui/Button.astro";
+import Icon from "../components/ui/Icon.astro";
 import StaticLayout from "../layouts/StaticLayout.astro";
 ---
 
 <StaticLayout title="404">
   <div class="flex h-[80vh] flex-col justify-center text-center">
     <h1 class="mb-4 text-9xl font-bold text-red-600">404</h1>
-    <p class="mb-8 text-2xl">
+    <p class="mb-8 text-2xl text-gray-600">
       Oops! Looks like you've wandered into uncharted territory.
     </p>
-    <div class="relative inline-block">
-      <a
-        href="/"
-        class="relative z-10 inline-flex items-center rounded-full bg-red-600 px-6 py-3 text-lg font-semibold text-white transition-colors duration-300 hover:bg-red-700"
-      >
+    <div class="flex justify-center">
+      <Button href="/" size="lg">
         <Icon name="mdi:home" size={20} class="mr-2" />
         Return to Home Base
-      </a>
+      </Button>
     </div>
   </div>
 </StaticLayout>

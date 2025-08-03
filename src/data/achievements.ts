@@ -1,4 +1,6 @@
-export default [
+import type { Achievement } from "../types";
+
+export const achievements: Achievement[] = [
   {
     title: "Google Hall of Fame",
     icon: "simple-icons:google",

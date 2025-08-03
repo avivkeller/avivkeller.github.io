@@ -1,9 +1,10 @@
 import goraLogo from "../assets/images/gora-logo.png";
+import keyframedLogo from "../assets/images/keyframed-logo.png";
 import nodejsLogo from "../assets/images/nodejs-logo.svg";
 import termviewLogo from "../assets/images/termview-logo.png";
-import keyframedLogo from "../assets/images/keyframed-logo.png";
+import type { Project } from "../types";
 
-export default [
+export const projects: Project[] = [
   {
     title: "Node.js",
     description:
@@ -23,7 +24,8 @@ export default [
   },
   {
     title: "unicode-case-folding",
-    description: "Unicode case folding utilities based on the official Unicode Character Database",
+    description:
+      "Unicode case folding utilities based on the official Unicode Character Database",
     githubLink: "https://github.com/avivkeller/unicode-case-folding",
   },
   {
@@ -34,7 +36,8 @@ export default [
   },
   {
     title: "rollup-plugin-tidy-templates",
-    description: "A Rollup plugin that removes specific tagged template expressions",
+    description:
+      "A Rollup plugin that removes specific tagged template expressions",
     githubLink: "https://github.com/avivkeller/rollup-plugin-tidy-templates",
   },
   {

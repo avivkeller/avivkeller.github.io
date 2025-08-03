@@ -1,15 +1,19 @@
 ---
+import BlogCard from "../components/cards/BlogCard.astro";
+import BackLink from "../components/common/BackLink.astro";
+import SectionHeader from "../components/ui/SectionHeader.astro";
 import StaticLayout from "../layouts/StaticLayout.astro";
-import BackTo from "../components/BackTo.astro";
-import BlogPostCard from "../components/BlogPostCard.astro";
 
 const blogs = Object.values(import.meta.glob("./posts/*.md", { eager: true }));
 ---
 
 <StaticLayout title="Blog">
-  <BackTo />
-  <h1 class="mb-8 text-center text-4xl font-bold">Blog Posts</h1>
-  <div class="grid grid-cols-1 gap-8 space-y-12 md:grid-cols-2">
-    {blogs.map((post) => <BlogPostCard post={post} />)}
+  <BackLink href="/" label="Portfolio" />
+  <SectionHeader
+    title="Blog Posts"
+    subtitle="Insights on technology, security, and software development"
+  />
+  <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+    {blogs.map((post) => <BlogCard post={post} />)}
   </div>
 </StaticLayout>

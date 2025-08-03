@@ -1,5 +1,7 @@
 ---
-const { name = "Portfolio", href = "/" } = Astro.props;
+import Icon from "../ui/Icon.astro";
+
+const { href, label } = Astro.props;
 ---
 
 <div class="mb-8">
@@ -7,6 +9,7 @@ const { name = "Portfolio", href = "/" } = Astro.props;
     href={href}
     class="inline-flex items-center text-red-600 transition-colors duration-300 hover:text-red-700"
   >
-    Back to {name}
+    <Icon name="mdi:arrow-left" size={20} class="mr-2" />
+    Back to {label}
   </a>
 </div>

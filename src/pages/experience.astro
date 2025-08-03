@@ -1,0 +1,69 @@
+---
+import WorkExperienceCard from "../components/cards/WorkExperienceCard.astro";
+import BackLink from "../components/common/BackLink.astro";
+import StatCard from "../components/ui/StatCard.astro";
+import { achievements, projects, workExperience } from "../data";
+import StaticLayout from "../layouts/StaticLayout.astro";
+---
+
+<StaticLayout title="Work Experience">
+  <BackLink href="/" label="Portfolio" />
+
+  <div class="mx-auto max-w-6xl">
+    <!-- Header -->
+    <div class="mb-16 text-center">
+      <h1
+        class="mb-6 bg-gradient-to-r from-red-600 to-red-700 bg-clip-text text-5xl font-black text-transparent"
+      >
+        Work Experience
+      </h1>
+      <p class="mx-auto max-w-3xl text-xl leading-relaxed text-gray-600">
+        My professional journey spanning open source contributions, security
+        research, and software development across various organizations and
+        communities.
+      </p>
+    </div>
+
+    <!-- Stats -->
+    <div class="mb-16 grid grid-cols-1 gap-6 md:grid-cols-3">
+      <StatCard
+        icon="mdi:code-tags"
+        value={`${projects.length}+`}
+        label="Open Source Projects"
+      />
+      <StatCard
+        icon="mdi:security"
+        value={`${achievements.filter((a) => a.title.includes("CVE")).length}+`}
+        label="CVEs Discovered"
+      />
+      <StatCard
+        icon="mdi:trophy"
+        value={`${achievements.length}+`}
+        label="Halls of Fame"
+      />
+    </div>
+
+    <!-- Timeline -->
+    <div class="relative">
+      <!-- Timeline line -->
+      <div
+        class="absolute top-0 bottom-0 left-8 w-0.5 bg-gradient-to-b from-red-500 to-red-700"
+      >
+      </div>
+
+      <div class="space-y-12">
+        {
+          workExperience.map((experience) => (
+            <div class="relative flex items-start">
+              <div class="absolute left-6 z-10 h-4 w-4 rounded-full border-4 border-red-500 bg-white shadow-lg" />
+
+              <div class="ml-20 flex-1">
+                <WorkExperienceCard experience={experience} />
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</StaticLayout>

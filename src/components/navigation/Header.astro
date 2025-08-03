@@ -1,8 +1,7 @@
 ---
-import { Icon } from "astro-icon/components";
-import sections from "../data/sections";
+import Icon from "../ui/Icon.astro";
 
-const { static: isStatic = false } = Astro.props;
+const { navigation, siteName, isStatic = false } = Astro.props;
 ---
 
 <nav
@@ -14,15 +13,17 @@ const { static: isStatic = false } = Astro.props;
       <a
         id="logo"
         class={`text-2xl font-bold ${isStatic ? "text-red-600" : "text-white"}`}
-        href="/">Aviv Keller</a
+        href="/"
       >
+        {siteName}
+      </a>
 
       <div
         id="menu-items"
         class={`hidden space-x-6 ${isStatic ? "" : "text-white"} md:flex`}
       >
         {
-          sections.map(({ title, href, target = "_self" }) => (
+          navigation.map(({ title, href, target = "_self" }) => (
             <a
               href={href}
               target={target}
@@ -36,10 +37,11 @@ const { static: isStatic = false } = Astro.props;
 
       <button
         id="menuToggle"
-        class={`z-40 ${isStatic ? "" : "text-white"} md:hidden cursor-poi`}
+        class={`z-40 ${isStatic ? "" : "text-white"} md:hidden`}
         aria-expanded="false"
+        aria-label="Toggle menu"
       >
-        <Icon class="h-8 w-8" name="mdi:menu" />
+        <Icon name="mdi:menu" size={32} />
       </button>
     </div>
   </div>
@@ -49,7 +51,7 @@ const { static: isStatic = false } = Astro.props;
     class="fixed inset-0 z-30 flex hidden flex-col items-center justify-center space-y-6 bg-white md:hidden"
   >
     {
-      sections.map(({ title, href, target = "_self" }) => (
+      navigation.map(({ title, href, target = "_self" }) => (
         <a
           href={href}
           target={target}
@@ -69,26 +71,26 @@ const { static: isStatic = false } = Astro.props;
   const menuToggle = document.getElementById("menuToggle");
   const mobileMenu = document.getElementById("mobileMenu");
 
-  menuToggle.onclick = () => {
-    menuToggle.setAttribute(
-      "aria-expanded",
-      mobileMenu.classList.contains("hidden") ? "false" : "true",
-    );
-    mobileMenu.classList.toggle("hidden");
+  menuToggle?.addEventListener("click", () => {
+    const isHidden = mobileMenu?.classList.contains("hidden");
+    menuToggle.setAttribute("aria-expanded", isHidden ? "true" : "false");
+    mobileMenu?.classList.toggle("hidden");
+
     if (isStatic && window.scrollY <= 50) {
       menuToggle.classList.toggle("text-white");
       menuToggle.classList.toggle("text-gray-600");
     }
-  };
+  });
 
-  !isStatic &&
+  if (!isStatic) {
     window.addEventListener("scroll", () => {
-      if (mobileMenu.classList.contains("hidden")) {
+      if (mobileMenu?.classList.contains("hidden")) {
         const isScrolled = window.scrollY > 50;
-        navbar.classList.toggle("bg-white", isScrolled);
-        navbar.classList.toggle("shadow-md", isScrolled);
-        logo.classList.toggle("text-red-600", isScrolled);
-        logo.classList.toggle("text-white", !isScrolled);
+
+        navbar?.classList.toggle("bg-white", isScrolled);
+        navbar?.classList.toggle("shadow-md", isScrolled);
+        logo?.classList.toggle("text-red-600", isScrolled);
+        logo?.classList.toggle("text-white", !isScrolled);
 
         navLinks.forEach((link) => {
           link.classList.toggle("text-gray-600", isScrolled);
@@ -96,9 +98,11 @@ const { static: isStatic = false } = Astro.props;
           link.classList.toggle("hover:text-red-600", isScrolled);
         });
 
-        menuToggle.classList.toggle("text-gray-600", isScrolled);
-        menuToggle.classList.toggle("text-white", !isScrolled);
+        menuToggle?.classList.toggle("text-gray-600", isScrolled);
+        menuToggle?.classList.toggle("text-white", !isScrolled);
       }
     });
+  }
 </script>
-{isStatic && <div class="relative h-16" />}
+
+{isStatic && <div class="h-16" />}

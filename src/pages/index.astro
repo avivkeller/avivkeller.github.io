@@ -1,141 +1,183 @@
 ---
-import projects from "../data/projects";
-import achievements from "../data/achievements";
-import SocialLinks from "../components/SocialLinks.astro";
-import MainLayout from "../layouts/MainLayout.astro";
-import Hero from "../components/Hero.astro";
-import AchievementCard from "../components/AchievementCard.astro";
-import ProjectCard from "../components/ProjectCard.astro";
-import BlogPostCard from "../components/BlogPostCard.astro";
 import { Image } from "astro:assets";
 
 import avatar from "../assets/images/avatar.svg";
+import AchievementCard from "../components/cards/AchievementCard.astro";
+import BlogCard from "../components/cards/BlogCard.astro";
+import ProjectCard from "../components/cards/ProjectCard.astro";
+import WorkExperienceCard from "../components/cards/WorkExperienceCard.astro";
+import SocialLinks from "../components/common/SocialLinks.astro";
+import Hero from "../components/sections/Hero.astro";
+import Button from "../components/ui/Button.astro";
+import Icon from "../components/ui/Icon.astro";
+import Section from "../components/ui/Section.astro";
+import SectionHeader from "../components/ui/SectionHeader.astro";
+import {
+  projects,
+  achievements,
+  workExperience,
+  socialLinks,
+  siteConfig,
+} from "../data";
+import MainLayout from "../layouts/MainLayout.astro";
 
 const blogs = Object.values(import.meta.glob("./posts/*.md", { eager: true }));
+const featuredProjects = projects.slice(0, 3);
+const featuredAchievements = achievements.slice(0, 3);
+const recentBlogs = blogs.slice(0, 3);
+const featuredExperience = workExperience.slice(0, 2);
 ---
 
-<MainLayout title="Home">
-  <Hero>
-    <h1 class="mb-4 text-5xl font-bold md:text-6xl">Aviv Keller</h1>
-    <p class="mb-8 text-xl md:text-2xl">Developer & Security Enthusiast</p>
-    <a
-      href="#projects"
-      class="rounded-full bg-white px-8 py-3 text-lg font-semibold text-red-600 transition-colors duration-300 hover:bg-red-100"
-      >View My Work</a
+<MainLayout>
+  <Hero
+    title={siteConfig.name}
+    subtitle="Developer & Security Enthusiast"
+    ctaText="View My Work"
+    ctaHref="#projects"
+  />
+
+  <!-- Projects Section -->
+  <Section background="bg-white" id="projects">
+    <SectionHeader
+      title="Featured Projects"
+      subtitle="Innovative solutions and tools that make a difference in the developer community"
+    />
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {featuredProjects.map((project) => <ProjectCard project={project} />)}
+    </div>
+    <div class="mt-12 text-center">
+      <Button href="/projects" size="lg">
+        View All Projects
+        <Icon name="mdi:arrow-right" size={20} class="ml-2" />
+      </Button>
+    </div>
+  </Section>
+
+  <!-- Experience Section -->
+  <Section background="bg-red-50">
+    <SectionHeader
+      title="Professional Experience"
+      subtitle="Contributing to open source, security research, and building impactful software"
+    />
+    <div class="mx-auto grid max-w-6xl grid-cols-1 gap-8 lg:grid-cols-2">
+      {
+        featuredExperience.map((experience) => (
+          <WorkExperienceCard experience={experience} />
+        ))
+      }
+    </div>
+    <div class="mt-12 text-center">
+      <Button href="/experience" size="lg">
+        <Icon name="mdi:briefcase" size={20} class="mr-2" />
+        View Full Experience
+      </Button>
+    </div>
+  </Section>
+
+  <!-- Achievements Section -->
+  <Section background="bg-white">
+    <SectionHeader
+      title="Recognition & Achievements"
+      subtitle="Honored by leading organizations for contributions to security and open source"
+    />
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+      {
+        featuredAchievements.map((achievement) => (
+          <AchievementCard achievement={achievement} />
+        ))
+      }
+    </div>
+    <div class="mt-12 text-center">
+      <Button href="/achievements" size="lg">
+        <Icon name="mdi:trophy" size={20} class="mr-2" />
+        View All Achievements
+      </Button>
+    </div>
+  </Section>
+
+  <!-- About Section -->
+  <Section background="bg-gray-50" id="about">
+    <div
+      class="mx-auto flex max-w-6xl flex-col items-center justify-center gap-16 lg:flex-row"
     >
-  </Hero>
-  {/* Main Content */}
-  <main>
-    {/* Projects Section */}
-    <section id="projects" class="bg-white py-20">
-      <div class="container mx-auto px-4">
-        <h2 class="mb-8 text-center text-3xl font-bold">Projects</h2>
-        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {
-            projects
-              .slice(0, 3)
-              .map((project) => <ProjectCard project={project} />)
-          }
-        </div>
-        <div class="mt-12 text-center">
-          <a
-            href="/projects"
-            class="rounded-full bg-red-600 px-8 py-3 text-lg font-semibold text-white transition-colors duration-300 hover:bg-red-700"
-          >
-            View More Projects
-          </a>
-        </div>
+      <div class="relative">
+        <Image
+          src={avatar || "/placeholder.svg"}
+          alt={`${siteConfig.name}'s Avatar`}
+        />
       </div>
-    </section>
-
-    {/* Achievements Section */}
-    <section id="achievements" class="bg-red-50 py-20">
-      <div class="container mx-auto px-4">
-        <h2 class="mb-8 text-center text-3xl font-bold">Achievements</h2>
-        <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
-          {
-            achievements
-              .slice(0, 3)
-              .map((achievement) => (
-                <AchievementCard achievement={achievement} />
-              ))
-          }
-        </div>
-        <div class="mt-12 text-center">
-          <a
-            href="/achievements"
-            class="rounded-full bg-red-600 px-8 py-3 text-lg font-semibold text-white transition-colors duration-300 hover:bg-red-700"
-          >
-            View More Achievements
-          </a>
-        </div>
-      </div>
-    </section>
-
-    {/* About Section */}
-    <section id="about" class="bg-white py-20">
-      <div class="container mx-auto px-4">
-        <div
-          class="flex flex-col items-center justify-center md:flex-row md:justify-start md:space-y-0 md:space-x-12"
+      <div class="max-w-2xl text-center lg:text-left">
+        <h2
+          class="mb-6 bg-gradient-to-r from-gray-900 to-red-600 bg-clip-text text-4xl font-black text-transparent md:text-5xl"
         >
-          <Image
-            src={avatar}
-            class="h-64 w-64 rounded-full object-cover"
-            alt="Aviv Keller's Avatar"
-          />
-          <div class="text-center md:text-left">
-            {/* Center text on small screens */}
-            <h2 class="mb-4 text-3xl font-bold">About Me</h2>
-            <p class="mb-4 text-gray-600">
-              Hey there! I'm Aviv, a passionate developer who thrives on
-              crafting innovative solutions and exploring the endless
-              possibilities that code offers. Outside of my development work,
-              I'm always diving into new technologies, contributing to
-              open-source communities, and sharing my insights through blog
-              posts.
-            </p>
-            <div class="flex justify-center md:justify-normal">
-              <SocialLinks />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    {/* Blog Section */}
-    <section id="blog" class="bg-red-50 py-20">
-      <div class="container mx-auto px-4">
-        <h2 class="mb-8 text-center text-3xl font-bold">Latest Blog Posts</h2>
-        <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
-          {blogs.slice(0, 3).map((post) => <BlogPostCard post={post} />)}
-        </div>
-        <div class="mt-12 text-center">
-          <a
-            href="/blog"
-            class="rounded-full bg-red-600 px-8 py-3 text-lg font-semibold text-white transition-colors duration-300 hover:bg-red-700"
-          >
-            View All Blog Posts
-          </a>
-        </div>
-      </div>
-    </section>
-
-    {/* Donate Section */}
-    <section id="donate" class="bg-white py-20">
-      <div class="container mx-auto px-4 text-center">
-        <h2 class="mb-4 text-3xl font-bold">Support My Work</h2>
-        <p class="mx-auto mb-8 max-w-2xl text-gray-600">
-          Your donations help me continue creating open-source projects and
-          contributing to the developer community.
+          About Me
+        </h2>
+        <p class="mb-8 text-xl leading-relaxed text-gray-600">
+          Hey there! I'm Aviv, a passionate developer who thrives on crafting
+          innovative solutions and exploring the endless possibilities that code
+          offers. Outside of my development work, I'm always diving into new
+          technologies, contributing to open-source communities, and sharing my
+          insights through blog posts.
         </p>
-        <a
-          href="https://github.com/sponsors/avivkeller"
-          target="_blank"
-          class="rounded-full bg-red-600 px-8 py-3 text-lg font-semibold text-white transition-colors duration-300 hover:bg-red-700"
+        <div class="mb-8 flex justify-center lg:justify-start">
+          <SocialLinks links={socialLinks} />
+        </div>
+        <div
+          class="flex flex-col justify-center gap-4 sm:flex-row lg:justify-start"
         >
-          Make a Donation
-        </a>
+          <Button href="/experience" size="lg">
+            <Icon name="mdi:briefcase" size={20} class="mr-2" />
+            View Experience
+          </Button>
+          <Button href="mailto:me@aviv.sh" size="lg" variant="outline">
+            <Icon name="mdi:email" size={20} class="mr-2" />
+            Get In Touch
+          </Button>
+        </div>
       </div>
-    </section>
-  </main>
+    </div>
+  </Section>
+
+  <!-- Blog Section -->
+  <Section background="bg-red-50">
+    <SectionHeader
+      title="Latest Insights"
+      subtitle="Thoughts on technology, security, and the ever-evolving world of software development"
+    />
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {recentBlogs.map((post) => <BlogCard post={post} />)}
+    </div>
+    <div class="mt-12 text-center">
+      <Button href="/blog" size="lg">
+        <Icon name="mdi:book-open" size={20} class="mr-2" />
+        Read All Posts
+      </Button>
+    </div>
+  </Section>
+
+  <!-- CTA Section -->
+  <Section
+    background="bg-gradient-to-r from-red-500 to-red-700"
+    class="relative overflow-hidden text-center"
+  >
+    <div class="absolute inset-0 bg-black opacity-50"></div>
+    <div class="relative z-10">
+      <h2 class="mb-6 text-4xl font-black text-white md:text-5xl">
+        Support My Work
+      </h2>
+      <p class="mx-auto mb-8 max-w-2xl text-xl leading-relaxed text-red-100">
+        Your donations help me continue creating open-source projects and
+        contributing to the developer community.
+      </p>
+      <Button
+        href="https://github.com/sponsors/avivkeller"
+        target="_blank"
+        size="xl"
+        variant="secondary"
+      >
+        <Icon name="mdi:heart" size={24} class="mr-3 text-red-500" />
+        Make a Donation
+      </Button>
+    </div>
+  </Section>
 </MainLayout>

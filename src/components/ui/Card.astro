@@ -1,0 +1,26 @@
+---
+const {
+  href,
+  target = "_self",
+  variant = "default",
+  class: className = "",
+  ...props
+} = Astro.props;
+
+const variants = {
+  default: "bg-white shadow-lg hover:shadow-xl",
+  flat: "bg-white border border-gray-200 hover:border-gray-300",
+};
+
+const baseClasses =
+  "block rounded-2xl transition-all duration-300 hover:-translate-y-1";
+const classes = `${baseClasses} ${variants[variant]} ${className}`;
+
+const Component = href ? "a" : "div";
+---
+
+<Component class={classes} {...href ? { href, target } : {}} {...props}>
+  <div class="relative z-10">
+    <slot />
+  </div>
+</Component>

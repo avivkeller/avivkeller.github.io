@@ -1,19 +1,25 @@
 ---
-import achievements from "../data/achievements";
+import AchievementCard from "../components/cards/AchievementCard.astro";
+import BackLink from "../components/common/BackLink.astro";
+import SectionHeader from "../components/ui/SectionHeader.astro";
+import { achievements } from "../data";
 import StaticLayout from "../layouts/StaticLayout.astro";
-import BackTo from "../components/BackTo.astro";
-import AchievementCard from "../components/AchievementCard.astro";
 ---
 
 <StaticLayout title="Achievements">
-  <BackTo />
-  <h1 class="mb-8 text-center text-4xl font-bold">My Achievements</h1>
+  <BackLink href="/" label="Portfolio" />
+  <SectionHeader
+    title="My Achievements"
+    subtitle="Recognition and awards from leading organizations for contributions to security and open source"
+  />
   <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
     {
       achievements.map((achievement) => (
         <AchievementCard achievement={achievement} />
       ))
     }
-  </div><br />
-  <h3 class="mb-8 text-center font-bold">(Among others...)</h3>
+  </div>
+  <div class="mt-8 text-center">
+    <p class="font-medium text-gray-600">(Among others...)</p>
+  </div>
 </StaticLayout>

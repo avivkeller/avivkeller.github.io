@@ -1,7 +1,7 @@
-import { defineConfig } from "astro/config";
-import icon from "astro-icon";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
+import { defineConfig } from "astro/config";
+import icon from "astro-icon";
 
 const base = "https://aviv.sh";
 

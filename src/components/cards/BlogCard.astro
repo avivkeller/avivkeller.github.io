@@ -1,0 +1,33 @@
+---
+import Card from "../ui/Card.astro";
+import Icon from "../ui/Icon.astro";
+
+const { post } = Astro.props;
+---
+
+<Card href={post.url} class="p-6">
+  <div class="flex flex-1 flex-col">
+    <h2
+      class="mb-3 text-xl leading-tight font-bold text-gray-900 transition-colors group-hover:text-red-600"
+    >
+      {post.frontmatter.title}
+    </h2>
+    <p
+      class="mb-6 flex-1 leading-relaxed text-gray-600"
+      set:html={post.frontmatter.description}
+    />
+
+    <div
+      class="flex items-center justify-between border-t border-gray-100 pt-4 text-sm text-gray-500"
+    >
+      <div class="flex items-center">
+        <Icon name="mdi:calendar" size={16} class="mr-2 text-red-500" />
+        <span>{post.frontmatter.pubDate}</span>
+      </div>
+      <div class="flex items-center">
+        <Icon name="mdi:clock" size={16} class="mr-2 text-red-500" />
+        <span>{post.frontmatter.readingTime}</span>
+      </div>
+    </div>
+  </div>
+</Card>

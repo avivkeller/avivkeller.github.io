@@ -1,13 +1,16 @@
 ---
-import Footer from "../components/Footer.astro";
 import BaseLayout from "./BaseLayout.astro";
-import Header from "../components/Header.astro";
+import Footer from "../components/navigation/Footer.astro";
+import Header from "../components/navigation/Header.astro";
+import { navigation, socialLinks, siteConfig } from "../data";
+
+const { title, description } = Astro.props;
 ---
 
-<BaseLayout title={Astro.props.title}>
-  <Header static={true} />
+<BaseLayout title={title} description={description}>
+  <Header navigation={navigation} siteName={siteConfig.name} isStatic={true} />
   <main class="container mx-auto flex-grow px-4 py-8">
     <slot />
   </main>
-  <Footer />
+  <Footer siteName={siteConfig.name} socialLinks={socialLinks} />
 </BaseLayout>

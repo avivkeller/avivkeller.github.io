@@ -1,0 +1,41 @@
+---
+import Button from "../ui/Button.astro";
+
+const { title, subtitle, ctaText, ctaHref } = Astro.props;
+---
+
+<section
+  class="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-r from-red-500 to-red-700"
+>
+  <!-- Simple animated background -->
+  <div class="absolute inset-0 bg-black opacity-50"></div>
+  <div class="relative z-10 mx-auto max-w-4xl px-4 text-center">
+    <h1 class="mb-6 text-6xl leading-tight font-black text-white md:text-8xl">
+      {title}
+    </h1>
+    <p
+      class="mx-auto mb-8 max-w-2xl text-xl leading-relaxed font-light text-red-100 md:text-3xl"
+    >
+      {subtitle}
+    </p>
+
+    {
+      ctaText && ctaHref && (
+        <div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <Button href={ctaHref} size="xl" variant="secondary">
+            {ctaText}
+          </Button>
+          <Button
+            href="#about"
+            variant="ghost"
+            class="text-red-100 hover:bg-red-600 hover:text-white"
+          >
+            Learn More
+          </Button>
+        </div>
+      )
+    }
+
+    <slot />
+  </div>
+</section>

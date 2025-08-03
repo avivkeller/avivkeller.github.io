@@ -1,0 +1,16 @@
+---
+const { title, subtitle, class: className = "" } = Astro.props;
+---
+
+<div class={`text-center mb-16 ${className}`}>
+  <h2
+    class={`text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-700 mb-4 h-14`}
+  >
+    {title}
+  </h2>
+  {
+    subtitle && (
+      <p class="mx-auto max-w-2xl text-xl text-gray-600">{subtitle}</p>
+    )
+  }
+</div>

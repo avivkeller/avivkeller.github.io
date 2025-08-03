@@ -1,0 +1,25 @@
+---
+const { items } = Astro.props;
+---
+
+<div class="relative">
+  <!-- Timeline line -->
+  <div
+    class="absolute top-0 bottom-0 left-8 w-0.5 bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500"
+  >
+  </div>
+
+  <div class="space-y-12">
+    {
+      items.map((item, index) => (
+        <div class="relative flex items-start">
+          <div class="absolute left-6 z-10 h-4 w-4 rounded-full border-4 border-blue-500 bg-white shadow-lg" />
+
+          <div class="ml-20 flex-1">
+            <slot name="item" {item} {index} />
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</div>

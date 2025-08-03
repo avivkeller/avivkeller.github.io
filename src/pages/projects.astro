@@ -1,13 +1,17 @@
 ---
-import projects from "../data/projects";
+import ProjectCard from "../components/cards/ProjectCard.astro";
+import BackLink from "../components/common/BackLink.astro";
+import SectionHeader from "../components/ui/SectionHeader.astro";
+import { projects } from "../data";
 import StaticLayout from "../layouts/StaticLayout.astro";
-import BackTo from "../components/BackTo.astro";
-import ProjectCard from "../components/ProjectCard.astro";
 ---
 
 <StaticLayout title="Projects">
-  <BackTo />
-  <h1 class="mb-8 text-center text-4xl font-bold">My Projects</h1>
+  <BackLink href="/" label="Portfolio" />
+  <SectionHeader
+    title="My Projects"
+    subtitle="A collection of open source projects, tools, and contributions to the developer community"
+  />
   <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
     {projects.map((project) => <ProjectCard project={project} />)}
   </div>

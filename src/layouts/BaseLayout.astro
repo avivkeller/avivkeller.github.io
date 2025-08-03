@@ -1,32 +1,30 @@
 ---
 import { SEO } from "astro-seo";
+
+import { siteConfig } from "../data";
 import "../styles/global.css";
 
-const { title } = Astro.props;
+const { title, description = siteConfig.description } = Astro.props;
 
-const actualTitle = title ? `Aviv Keller | ${title}` : "Aviv Keller";
-const description =
-  "Aviv is a software developer and cybersecurity enthusiast.";
+const pageTitle = title ? `${siteConfig.name} | ${title}` : siteConfig.title;
 ---
 
 <html lang="en" class="scroll-smooth">
   <head>
     <SEO
-      title={actualTitle}
-      {description}
+      title={pageTitle}
+      description={description}
       charset="utf-8"
       twitter={{
         card: "summary",
-        site: "@aviv_keller",
-        creator: "@aviv_keller",
-        title: actualTitle,
+        site: siteConfig.author.twitter,
+        creator: siteConfig.author.twitter,
+        title: pageTitle,
         description,
       }}
     />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <title>{actualTitle}</title>
   </head>
   <body class="flex min-h-screen flex-col bg-gray-50 font-sans text-gray-800">
     <slot />

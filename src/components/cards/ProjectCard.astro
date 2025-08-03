@@ -1,0 +1,70 @@
+---
+import { Image } from "astro:assets";
+
+import Badge from "../ui/Badge.astro";
+import Card from "../ui/Card.astro";
+import Icon from "../ui/Icon.astro";
+
+const { project } = Astro.props;
+---
+
+<Card class="justify flex flex-col overflow-hidden">
+  {
+    project.image && (
+      <div class="relative overflow-hidden">
+        <Image
+          src={project.image || "/placeholder.svg"}
+          alt={project.title}
+          class="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-110"
+        />
+      </div>
+    )
+  }
+
+  <div class="flex-1 p-6 pb-0">
+    <h2
+      class="mb-3 text-2xl font-bold text-gray-900 transition-colors group-hover:text-red-600"
+    >
+      {project.title}
+    </h2>
+    <p class="mb-4 leading-relaxed text-gray-600">
+      {project.description}
+    </p>
+
+    {
+      project.technologies && (
+        <div class="mb-4 flex flex-wrap gap-2">
+          {project.technologies.map((tech) => (
+            <Badge variant="primary">{tech}</Badge>
+          ))}
+        </div>
+      )
+    }
+  </div>
+
+  <div class="mt-auto flex justify-between border-t border-gray-100 p-6 pt-4">
+    <a
+      href={project.githubLink}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center font-semibold text-gray-700 transition-colors hover:text-red-600"
+    >
+      <Icon name="mdi:github" size={20} class="mr-2" />
+      View Code
+    </a>
+
+    {
+      project.website && (
+        <a
+          href={project.website}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center font-semibold text-gray-700 transition-colors hover:text-red-600"
+        >
+          <Icon name="mdi:external-link" size={20} class="mr-2" />
+          Website
+        </a>
+      )
+    }
+  </div>
+</Card>

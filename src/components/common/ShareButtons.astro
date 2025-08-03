@@ -1,0 +1,23 @@
+---
+import { createShareUrls } from "../../utils";
+import Icon from "../ui/Icon.astro";
+
+const { url, title, description } = Astro.props;
+const shareUrls = createShareUrls(url, title, description);
+---
+
+<div class="flex space-x-4">
+  {
+    shareUrls.map((platform) => (
+      <a
+        href={platform.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={platform.label}
+        class="text-red-600 transition-colors duration-300 hover:text-red-700"
+      >
+        <Icon name={platform.icon} size={18} />
+      </a>
+    ))
+  }
+</div>
