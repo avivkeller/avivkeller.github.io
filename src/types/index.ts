@@ -38,19 +38,15 @@ export interface NavigationItem {
   target?: string;
 }
 
-export interface SharePlatform {
-  icon: string;
-  url: string;
-  label: string;
+export interface Position {
+  title: string;
+  duration: string;
 }
 
 export interface WorkExperience {
   company: string;
-  position: string;
-  duration: string;
-  location: string;
-  description: string[];
-  technologies?: string[];
-  website?: string;
+  website: string;
   type: "full-time" | "part-time" | "contract" | "internship" | "volunteer";
+  positions: Position[];
+  technologies?: string[];
 }

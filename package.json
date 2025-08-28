@@ -9,29 +9,30 @@
     "format:write": "prettier . --write",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
+    "check:types": "tsc --noEmit",
     "preview": "astro preview",
     "start": "astro dev"
   },
   "dependencies": {
-    "@astrojs/sitemap": "3.4.2",
-    "@tailwindcss/vite": "4.1.11",
-    "astro": "5.12.8",
+    "@astrojs/sitemap": "3.5.1",
+    "@tailwindcss/vite": "4.1.12",
+    "astro": "5.13.4",
     "astro-icon": "1.1.5",
     "astro-seo": "0.8.4",
     "eslint-plugin-import-x": "^4.16.1",
-    "tailwindcss": "4.1.11"
+    "tailwindcss": "4.1.12"
   },
   "devDependencies": {
-    "@eslint/js": "9.32.0",
+    "@eslint/js": "9.34.0",
     "@iconify-json/mdi": "1.2.3",
-    "@iconify-json/simple-icons": "1.2.45",
+    "@iconify-json/simple-icons": "1.2.49",
     "@tailwindcss/typography": "0.5.16",
-    "eslint": "9.32.0",
+    "eslint": "9.34.0",
     "eslint-plugin-astro": "1.3.1",
     "prettier": "3.6.2",
     "prettier-plugin-astro": "0.14.1",
     "prettier-plugin-pkgsort": "0.2.1",
     "prettier-plugin-tailwindcss": "0.6.14",
-    "typescript-eslint": "8.38.0"
+    "typescript-eslint": "8.41.0"
   }
 }

@@ -1,10 +1,8 @@
-import type { SharePlatform } from "../types";
-
 export function createShareUrls(
   url: string,
   title: string,
   description: string,
-): SharePlatform[] {
+) {
   const encodedUrl = encodeURIComponent(url);
   const encodedTitle = encodeURIComponent(title);
   const encodedDesc = encodeURIComponent(description);

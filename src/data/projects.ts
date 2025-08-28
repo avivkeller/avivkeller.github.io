@@ -1,19 +1,9 @@
 import goraLogo from "../assets/images/gora-logo.png";
 import keyframedLogo from "../assets/images/keyframed-logo.png";
-import nodejsLogo from "../assets/images/nodejs-logo.svg";
 import termviewLogo from "../assets/images/termview-logo.png";
 import type { Project } from "../types";
 
 export const projects: Project[] = [
-  {
-    title: "Node.js",
-    description:
-      "Node.js® is a free, open-source JavaScript runtime environment that operates across platforms, enabling developers to build servers, web applications, command-line tools, and scripts with ease.",
-    image: nodejsLogo,
-    technologies: ["JavaScript", "Node.js", "C++"],
-    githubLink: "https://github.com/nodejs/node",
-    website: "https://nodejs.org/",
-  },
   {
     title: "Apache Gora Website",
     description: "The official website dedicated to the Apache Gora Project.",
@@ -24,14 +14,21 @@ export const projects: Project[] = [
   },
   {
     title: "mdast-util-slice-markdown",
-    description: "A powerful, highly configurable TypeScript library for slicing markdown Abstract Syntax Trees (AST) by character position.",
-    githubLink: "https://github.com/avivkeller/mdast-util-slice-markdown"
+    description:
+      "A powerful, highly configurable TypeScript library for slicing markdown Abstract Syntax Trees (AST) by character position.",
+    githubLink: "https://github.com/avivkeller/mdast-util-slice-markdown",
   },
   {
     title: "unicode-case-folding",
     description:
       "Unicode case folding utilities based on the official Unicode Character Database",
     githubLink: "https://github.com/avivkeller/unicode-case-folding",
+  },
+  {
+    title: "remark-table-cell-titles",
+    description:
+      "A remark plugin that adds data-title attributes to table cells in Markdown tables.",
+    githubLink: "https://github.com/avivkeller/remark-table-cell-titles",
   },
   {
     title: "Videos in CSS",
