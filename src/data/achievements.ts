@@ -37,6 +37,16 @@ export const achievements: Achievement[] = [
     url: "https://github.com/orgs/GitHubBounty/people?query=avivkeller",
   },
   {
+    title: "CVE-2025-48987",
+    icon: "simple-icons:vercel",
+    url: "https://nvd.nist.gov/vuln/detail/CVE-2025-48987",
+  },
+  {
+    title: "CVE-2025-48986",
+    icon: "simple-icons:vercel",
+    url: "https://nvd.nist.gov/vuln/detail/CVE-2025-48986",
+  },
+  {
     title: "CVE-2024-39700",
     icon: "simple-icons:jupyter",
     url: "https://github.com/jupyterlab/extension-template/security/advisories/GHSA-45gq-v5wm-82wg",
