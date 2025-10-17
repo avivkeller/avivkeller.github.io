@@ -2,6 +2,11 @@ import type { Achievement } from "../types";
 
 export const achievements: Achievement[] = [
   {
+    title: "JavaScriptLandia “Outstanding Contribution from a New Arrival”",
+    icon: "simple-icons:openjsfoundation",
+    url: "https://openjsf.org/blog/javascriptlandia-awards-2025"
+  },
+  {
     title: "Google Hall of Fame",
     icon: "simple-icons:google",
     url: "https://bughunters.google.com/profile/862b3197-06d6-442d-b82e-5a0cdb544c3e",
