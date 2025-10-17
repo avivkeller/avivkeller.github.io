@@ -58,17 +58,18 @@ export const achievements: Achievement[] = [
   },
   {
     title: "CVE-2024-27285",
+    icon: "simple-icons:rubygems",
     url: "https://github.com/lsegal/yard/security/advisories/GHSA-8mq4-9jjh-9xrc",
   },
   {
     title: "Verizon Letter of Appreciation",
-    url: "/assets/documents/verizon_rec.pdf",
     icon: "simple-icons:verizon",
+    url: "/assets/documents/verizon_rec.pdf",
   },
   {
     title: "NASA Letter of Appreciation",
-    url: "/assets/documents/nasa_rec.pdf",
     icon: "simple-icons:nasa",
+    url: "/assets/documents/nasa_rec.pdf",
   },
   {
     title: "freeCodeCamp Hall of Fame",
@@ -87,10 +88,12 @@ export const achievements: Achievement[] = [
   },
   {
     title: "Drexel Hall of Fame",
+    icon: "mdi:school",
     url: "https://drexel.edu/it/security/services-processes/bug-bounty/",
   },
   {
     title: "University of York VDP Credits",
+    icon: "mdi:school",
     url: "https://www.york.ac.uk/it-services/security/vulnerability-disclosure/",
   },
   {
@@ -105,6 +108,7 @@ export const achievements: Achievement[] = [
   },
   {
     title: "Education Horizons Hall of Fame",
+    icon: "mdi:book-education",
     url: "https://educationhorizons.com/vulnerability-disclosure-policy/",
   },
   {
