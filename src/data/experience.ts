@@ -5,11 +5,11 @@ export const workExperience: WorkExperience[] = [
     company: "OpenJS Foundation",
     positions: [
       {
-        title: "Webpack Security",
+        title: "Webpack Collaborator",
         duration: "2025 - Present",
       },
       {
-        title: "Node.js non-Core Collaborator",
+        title: "Node.js Collaborator",
         duration: "2023 - Present",
       },
     ],
