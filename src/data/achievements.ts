@@ -62,6 +62,16 @@ export const achievements: Achievement[] = [
     url: "https://github.com/lsegal/yard/security/advisories/GHSA-8mq4-9jjh-9xrc",
   },
   {
+    title: "ATProto Hall of Fame",
+    icon: "simple-icons:bluesky",
+    url: "https://github.com/bluesky-social/atproto/blob/main/CONTRIBUTORS.md#the-at-protocol-maintainers-give-their-thanks-to",
+  },
+  {
+    title: "VueJS Hall of Fame",
+    icon: "simple-icons:vuedotjs",
+    url: "https://github.com/vuejs/core/blob/main/SECURITY.md"
+  },
+  {
     title: "Verizon Letter of Appreciation",
     icon: "simple-icons:verizon",
     url: "/assets/documents/verizon_rec.pdf",
