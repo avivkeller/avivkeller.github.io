@@ -6,57 +6,47 @@ import Icon from "../ui/Icon.astro";
 
 const { experience } = Astro.props as { experience: WorkExperience };
 
-const typeConfig = {
-  "full-time": { color: "success", icon: "mdi:briefcase" },
-  "part-time": { color: "primary", icon: "mdi:clock-outline" },
-  contract: { color: "secondary", icon: "mdi:handshake" },
-  internship: { color: "warning", icon: "mdi:school" },
-  volunteer: { color: "danger", icon: "mdi:heart" },
+const typeLabels: Record<WorkExperience["type"], string> = {
+  "full-time": "Full-time",
+  "part-time": "Part-time",
+  contract: "Contract",
+  internship: "Internship",
+  volunteer: "Volunteer",
 };
-
-const config = typeConfig[experience.type];
 ---
 
-<Card class="p-8" href={experience.website}>
-  <div class="mb-6 flex items-start justify-between">
-    <div class="flex-1">
-      <div class="mb-2 flex items-center gap-3">
-        <h3 class="text-2xl font-bold text-gray-900">{experience.company}</h3>
-      </div>
-
-      {
-        experience.positions.map((pos) => (
-          <div class="mb-4">
-            <h4 class="mb-1 text-xl font-semibold text-red-600">{pos.title}</h4>
-            <div class="flex flex-wrap items-center gap-4 text-sm text-gray-600">
-              <div class="flex items-center gap-1">
-                <Icon name="mdi:calendar" size={16} />
-                <span>{pos.duration}</span>
-              </div>
-            </div>
-          </div>
-        ))
-      }
-    </div>
-
-    <Badge variant={config.color} class="flex items-center gap-1">
-      <Icon name={config.icon} size={14} />
-      {experience.type.charAt(0).toUpperCase() + experience.type.slice(1)}
-    </Badge>
+<Card class="p-5">
+  <div class="flex flex-wrap items-start justify-between gap-2">
+    <h3 class="text-lg font-bold text-stone-900">
+      <a
+        href={experience.website}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-1.5 hover:text-brand"
+      >
+        {experience.company}
+        <Icon name="mdi:open-in-new" size={14} class="text-stone-400" />
+      </a>
+    </h3>
+    <Badge variant="neutral">{typeLabels[experience.type]}</Badge>
   </div>
 
-  {
-    experience.technologies && (
-      <div>
-        <h5 class="mb-3 text-sm font-semibold text-gray-900">
-          Technologies & Skills
-        </h5>
-        <div class="flex flex-wrap gap-2">
-          {experience.technologies.map((tech) => (
-            <Badge variant="secondary">{tech}</Badge>
-          ))}
-        </div>
-      </div>
-    )
-  }
+  <ul class="mt-3 divide-y divide-stone-100">
+    {experience.positions.map((pos) => (
+      <li class="flex flex-wrap items-baseline justify-between gap-x-4 py-2 text-sm">
+        <span class="font-semibold text-brand-deep">{pos.title}</span>
+        <span class="text-stone-500 tabular-nums">{pos.duration}</span>
+      </li>
+    ))}
+  </ul>
+
+  {experience.technologies && (
+    <ul class="mt-3 flex flex-wrap gap-1.5">
+      {experience.technologies.map((tech) => (
+        <li>
+          <Badge>{tech}</Badge>
+        </li>
+      ))}
+    </ul>
+  )}
 </Card>

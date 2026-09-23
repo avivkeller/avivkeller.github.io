@@ -4,7 +4,7 @@ export const achievements: Achievement[] = [
   {
     title: "JavaScriptLandia “Outstanding Contribution from a New Arrival”",
     icon: "simple-icons:openjsfoundation",
-    url: "https://openjsf.org/blog/javascriptlandia-awards-2025"
+    url: "https://openjsf.org/blog/javascriptlandia-awards-2025",
   },
   {
     title: "Google Hall of Fame",
@@ -36,16 +36,17 @@ export const achievements: Achievement[] = [
     icon: "simple-icons:github",
     url: "https://github.com/orgs/GitHubBounty/people?query=avivkeller",
   },
-  {
-    title: "CVE-2025-48987",
-    icon: "simple-icons:vercel",
-    url: "https://nvd.nist.gov/vuln/detail/CVE-2025-48987",
-  },
-  {
-    title: "CVE-2025-48986",
-    icon: "simple-icons:vercel",
-    url: "https://nvd.nist.gov/vuln/detail/CVE-2025-48986",
-  },
+  // TODO: Get correct CVE IDs
+  // {
+  //   title: "CVE-2025-48987",
+  //   icon: "simple-icons:vercel",
+  //   url: "https://nvd.nist.gov/vuln/detail/CVE-2025-48987",
+  // },
+  // {
+  //   title: "CVE-2025-48986",
+  //   icon: "simple-icons:vercel",
+  //   url: "https://nvd.nist.gov/vuln/detail/CVE-2025-48986",
+  // },
   {
     title: "CVE-2024-39700",
     icon: "simple-icons:jupyter",
@@ -69,7 +70,7 @@ export const achievements: Achievement[] = [
   {
     title: "VueJS Hall of Fame",
     icon: "simple-icons:vuedotjs",
-    url: "https://github.com/vuejs/core/blob/main/SECURITY.md"
+    url: "https://github.com/vuejs/core/blob/main/SECURITY.md",
   },
   {
     title: "Verizon Letter of Appreciation",

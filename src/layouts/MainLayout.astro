@@ -9,7 +9,7 @@ const { title, description } = Astro.props;
 
 <BaseLayout title={title} description={description}>
   <Header navigation={navigation} siteName={siteConfig.name} />
-  <main class="flex-grow">
+  <main id="main" class="flex-grow">
     <slot />
   </main>
   <Footer siteName={siteConfig.name} socialLinks={socialLinks} />

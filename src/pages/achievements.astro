@@ -4,22 +4,39 @@ import BackLink from "../components/common/BackLink.astro";
 import SectionHeader from "../components/ui/SectionHeader.astro";
 import { achievements } from "../data";
 import StaticLayout from "../layouts/StaticLayout.astro";
+import { isCve } from "../utils";
+
+const cves = achievements.filter(isCve);
+const acknowledgements = achievements.filter((a) => !isCve(a));
 ---
 
-<StaticLayout title="Achievements">
-  <BackLink href="/" label="Portfolio" />
+<StaticLayout
+  title="Achievements"
+  description="Awards, security hall of fame credits, and CVEs assigned to vulnerabilities Aviv Keller reported."
+>
+  <BackLink href="/" label="Home" />
+
   <SectionHeader
-    title="My Achievements"
-    subtitle="Recognition and awards from leading organizations for contributions to security and open source"
+    as="h1"
+    title="Achievements"
+    subtitle="Awards and security acknowledgements from organizations I've reported vulnerabilities to, plus CVEs assigned to those reports. This is a partial list."
   />
-  <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-    {
-      achievements.map((achievement) => (
+
+  <section class="mb-12">
+    <SectionHeader as="h2" size="h3" title="Awards and acknowledgements" />
+    <ul class="grid grid-cols-1 border-t border-stone-200 sm:grid-cols-2 sm:gap-x-8 lg:grid-cols-3">
+      {acknowledgements.map((achievement) => (
         <AchievementCard achievement={achievement} />
-      ))
-    }
-  </div>
-  <div class="mt-8 text-center">
-    <p class="font-medium text-gray-600">(Among others...)</p>
-  </div>
+      ))}
+    </ul>
+  </section>
+
+  <section>
+    <SectionHeader as="h2" size="h3" title="CVEs" />
+    <ul class="grid grid-cols-1 border-t border-stone-200 sm:grid-cols-2 sm:gap-x-8 lg:grid-cols-3">
+      {cves.map((achievement) => (
+        <AchievementCard achievement={achievement} />
+      ))}
+    </ul>
+  </section>
 </StaticLayout>

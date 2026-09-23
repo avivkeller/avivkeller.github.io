@@ -1,41 +1,37 @@
 ---
-import Button from "../ui/Button.astro";
+import { Image } from "astro:assets";
 
-const { title, subtitle, ctaText, ctaHref } = Astro.props;
+import avatar from "../../assets/images/avatar.svg";
+import SocialLinks from "../common/SocialLinks.astro";
+import Button from "../ui/Button.astro";
+import Icon from "../ui/Icon.astro";
+
+const { name, socialLinks, email } = Astro.props;
 ---
 
-<section
-  class="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-r from-red-500 to-red-700"
->
-  <!-- Simple animated background -->
-  <div class="absolute inset-0 bg-black opacity-50"></div>
-  <div class="relative z-10 mx-auto max-w-4xl px-4 text-center">
-    <h1 class="mb-6 text-6xl leading-tight font-black text-white md:text-8xl">
-      {title}
-    </h1>
-    <p
-      class="mx-auto mb-8 max-w-2xl text-xl leading-relaxed font-light text-red-100 md:text-3xl"
-    >
-      {subtitle}
-    </p>
-
-    {
-      ctaText && ctaHref && (
-        <div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <Button href={ctaHref} size="xl" variant="secondary">
-            {ctaText}
-          </Button>
-          <Button
-            href="#about"
-            variant="ghost"
-            class="text-red-100 hover:bg-red-600 hover:text-white"
-          >
-            Learn More
-          </Button>
-        </div>
-      )
-    }
-
-    <slot />
+<section class="border-b-4 border-brand">
+  <div class="mx-auto flex max-w-6xl flex-col-reverse items-start gap-10 px-4 py-16 sm:px-6 md:flex-row md:items-center md:justify-between md:py-24">
+    <div class="max-w-2xl">
+      <h1 class="text-6xl leading-none font-extrabold tracking-tighter text-stone-900 sm:text-7xl md:text-8xl">
+        {name}
+      </h1>
+      <p class="mt-5 max-w-xl text-lg leading-relaxed text-stone-600">
+        I work on Node.js and webpack, and I do security research on the side.
+        My vulnerability reports have been credited by Google, Apple, Red Hat,
+        the Apache Software Foundation, and others.
+      </p>
+      <div class="mt-8 flex flex-wrap items-center gap-3">
+        <Button href="/projects">
+          Projects
+          <Icon name="mdi:arrow-right" size={16} />
+        </Button>
+        <Button href={`mailto:${email}`} variant="secondary">
+          <Icon name="mdi:email-outline" size={16} />
+          Email me
+        </Button>
+        <SocialLinks links={socialLinks} size={18} class="sm:ml-2" />
+      </div>
+    </div>
+    <Image src={avatar} alt="" loading="eager" class="h-48 w-48 shrink-0" />
   </div>
 </section>

@@ -4,12 +4,13 @@ export interface SocialLink {
   href: string;
   icon: string;
   label: string;
-  rel?: string;
 }
 
 export interface Project {
   title: string;
   description: string;
+  /** Shown when the project belongs to an organization, e.g. "Collaborator". */
+  role?: string;
   image?: ImageMetadata;
   technologies?: string[];
   githubLink: string;
@@ -22,14 +23,31 @@ export interface Achievement {
   url: string;
 }
 
-export interface BlogPost {
+export interface ExternalPost {
+  title: string;
+  description: string;
+  date: string;
+  url: string;
+  source: string;
+}
+
+export interface MarkdownPost {
   url: string;
   frontmatter: {
     title: string;
     description: string;
     pubDate: string;
-    readingTime: string;
+    readingTime?: string;
   };
+}
+
+export interface BlogPost {
+  title: string;
+  description: string;
+  date: string;
+  url: string;
+  source?: string;
+  readingTime?: string;
 }
 
 export interface NavigationItem {
@@ -49,4 +67,13 @@ export interface WorkExperience {
   type: "full-time" | "part-time" | "contract" | "internship" | "volunteer";
   positions: Position[];
   technologies?: string[];
+}
+
+export interface SpeakingEngagement {
+  event: string;
+  date: string;
+  role: "speaker" | "attendee";
+  talk?: string;
+  location?: string;
+  url?: string;
 }

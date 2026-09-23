@@ -4,35 +4,36 @@
   "scripts": {
     "astro": "astro",
     "build": "astro build",
+    "check:types": "tsc --noEmit",
     "dev": "astro dev",
     "format:check": "prettier . --check",
     "format:write": "prettier . --write",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
-    "check:types": "tsc --noEmit",
     "preview": "astro preview",
     "start": "astro dev"
   },
   "dependencies": {
-    "@astrojs/sitemap": "3.5.1",
-    "@tailwindcss/vite": "4.1.12",
-    "astro": "5.13.4",
-    "astro-icon": "1.1.5",
-    "astro-seo": "0.8.4",
-    "eslint-plugin-import-x": "^4.16.1",
-    "tailwindcss": "4.1.12"
+    "@astrojs/sitemap": "3.7.4",
+    "@fontsource-variable/bricolage-grotesque": "^5.3.0",
+    "@fontsource/ibm-plex-sans": "^5.3.0",
+    "@tailwindcss/vite": "4.3.3",
+    "astro": "7.3.4",
+    "astro-icon": "1.2.0",
+    "astro-seo": "1.2.0",
+    "tailwindcss": "4.3.3"
   },
   "devDependencies": {
-    "@eslint/js": "9.34.0",
+    "@eslint/js": "10.0.1",
     "@iconify-json/mdi": "1.2.3",
-    "@iconify-json/simple-icons": "1.2.49",
-    "@tailwindcss/typography": "0.5.16",
-    "eslint": "9.34.0",
-    "eslint-plugin-astro": "1.3.1",
-    "prettier": "3.6.2",
-    "prettier-plugin-astro": "0.14.1",
-    "prettier-plugin-pkgsort": "0.2.1",
-    "prettier-plugin-tailwindcss": "0.6.14",
-    "typescript-eslint": "8.41.0"
+    "@iconify-json/simple-icons": "1.2.97",
+    "eslint": "10.11.0",
+    "eslint-plugin-astro": "3.2.1",
+    "eslint-plugin-import-x": "^4.17.1",
+    "prettier": "3.9.8",
+    "prettier-plugin-astro": "1.0.1",
+    "prettier-plugin-pkgsort": "0.3.0",
+    "prettier-plugin-tailwindcss": "0.8.1",
+    "typescript-eslint": "8.70.1"
   }
 }

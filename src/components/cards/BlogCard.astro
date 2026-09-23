@@ -1,33 +1,40 @@
 ---
+import type { BlogPost } from "../../types";
+import { formatDate } from "../../utils";
 import Card from "../ui/Card.astro";
 import Icon from "../ui/Icon.astro";
 
-const { post } = Astro.props;
+const { post } = Astro.props as { post: BlogPost };
+const external = Boolean(post.source);
 ---
 
-<Card href={post.url} class="p-6">
-  <div class="flex flex-1 flex-col">
-    <h2
-      class="mb-3 text-xl leading-tight font-bold text-gray-900 transition-colors group-hover:text-red-600"
-    >
-      {post.frontmatter.title}
-    </h2>
-    <p
-      class="mb-6 flex-1 leading-relaxed text-gray-600"
-      set:html={post.frontmatter.description}
-    />
-
-    <div
-      class="flex items-center justify-between border-t border-gray-100 pt-4 text-sm text-gray-500"
-    >
-      <div class="flex items-center">
-        <Icon name="mdi:calendar" size={16} class="mr-2 text-red-500" />
-        <span>{post.frontmatter.pubDate}</span>
-      </div>
-      <div class="flex items-center">
-        <Icon name="mdi:clock" size={16} class="mr-2 text-red-500" />
-        <span>{post.frontmatter.readingTime}</span>
-      </div>
-    </div>
-  </div>
+<Card
+  href={post.url}
+  target={external ? "_blank" : "_self"}
+  class="flex h-full flex-col p-5"
+>
+  <p class="flex flex-wrap items-center gap-x-2 text-xs text-stone-500">
+    <time datetime={post.date}>{formatDate(post.date)}</time>
+    {post.readingTime && (
+      <>
+        <span aria-hidden="true">·</span>
+        <span>{post.readingTime}</span>
+      </>
+    )}
+    {post.source && (
+      <>
+        <span aria-hidden="true">·</span>
+        <span class="inline-flex items-center gap-1 font-medium text-brand">
+          {post.source}
+          <Icon name="mdi:open-in-new" size={12} />
+        </span>
+      </>
+    )}
+  </p>
+  <h3 class="mt-2 text-lg font-bold text-stone-900 transition-colors group-hover:text-brand">
+    {post.title}
+  </h3>
+  <p class="mt-1.5 text-sm leading-relaxed text-stone-600">
+    {post.description}
+  </p>
 </Card>

@@ -1,4 +1,6 @@
 ---
+import plexUrl from "@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-400-normal.woff2?url";
+import bricolageUrl from "@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-wght-normal.woff2?url";
 import { SEO } from "astro-seo";
 
 import { siteConfig } from "../data";
@@ -6,7 +8,8 @@ import "../styles/global.css";
 
 const { title, description = siteConfig.description } = Astro.props;
 
-const pageTitle = title ? `${siteConfig.name} | ${title}` : siteConfig.title;
+const pageTitle = title ? `${title} · ${siteConfig.name}` : siteConfig.name;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
 ---
 
 <html lang="en" class="scroll-smooth">
@@ -14,19 +17,40 @@ const pageTitle = title ? `${siteConfig.name} | ${title}` : siteConfig.title;
     <SEO
       title={pageTitle}
       description={description}
+      canonical={canonical}
       charset="utf-8"
       twitter={{
         card: "summary",
-        site: siteConfig.author.twitter,
-        creator: siteConfig.author.twitter,
+        site: siteConfig.twitter,
+        creator: siteConfig.twitter,
         title: pageTitle,
         description,
       }}
     />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="preload"
+      href={bricolageUrl}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href={plexUrl}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <link rel="sitemap" href="/sitemap-index.xml" />
   </head>
-  <body class="flex min-h-screen flex-col bg-gray-50 font-sans text-gray-800">
+  <body class="flex min-h-screen flex-col bg-white font-sans text-stone-800 antialiased">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] focus:bg-brand focus:px-3 focus:py-2 focus:text-white"
+    >
+      Skip to content
+    </a>
     <slot />
   </body>
 </html>

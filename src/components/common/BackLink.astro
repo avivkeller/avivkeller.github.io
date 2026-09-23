@@ -1,15 +1,10 @@
 ---
-import Icon from "../ui/Icon.astro";
-
 const { href, label } = Astro.props;
 ---
 
-<div class="mb-8">
-  <a
-    href={href}
-    class="inline-flex items-center text-red-600 transition-colors duration-300 hover:text-red-700"
-  >
-    <Icon name="mdi:arrow-left" size={20} class="mr-2" />
-    Back to {label}
-  </a>
-</div>
+<a
+  href={href}
+  class="mb-8 inline-block text-sm font-semibold text-brand underline decoration-brand-rule decoration-2 underline-offset-4 hover:decoration-brand"
+>
+  {label}
+</a>

@@ -5,14 +5,11 @@ const { siteName, socialLinks } = Astro.props;
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="mt-12 bg-gray-100 py-8">
-  <div class="container mx-auto px-4">
-    <div class="flex flex-col items-center justify-between md:flex-row">
-      <div class="mb-4 text-gray-600 md:mb-0">
-        © {currentYear}
-        {siteName}. All rights reserved.
-      </div>
-      <SocialLinks links={socialLinks} />
-    </div>
+<footer class="mt-auto border-t border-stone-200">
+  <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 py-8 sm:flex-row sm:px-6">
+    <p class="text-sm text-stone-600">
+      © {currentYear} {siteName}
+    </p>
+    <SocialLinks links={socialLinks} size={20} />
   </div>
 </footer>

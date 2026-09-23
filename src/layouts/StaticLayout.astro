@@ -8,8 +8,11 @@ const { title, description } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
-  <Header navigation={navigation} siteName={siteConfig.name} isStatic={true} />
-  <main class="container mx-auto flex-grow px-4 py-8">
+  <Header navigation={navigation} siteName={siteConfig.name} />
+  <main
+    id="main"
+    class="mx-auto w-full max-w-6xl flex-grow px-4 py-10 sm:px-6 md:py-14"
+  >
     <slot />
   </main>
   <Footer siteName={siteConfig.name} socialLinks={socialLinks} />

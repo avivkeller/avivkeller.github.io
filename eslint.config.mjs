@@ -4,7 +4,7 @@ import importX from "eslint-plugin-import-x";
 import tseslint from "typescript-eslint";
 
 export default tseslint.config(
-  { ignores: [".astro"] },
+  { ignores: [".astro", "dist"] },
   eslint.configs.recommended,
   importX.flatConfigs.recommended,
   tseslint.configs.recommended,

@@ -9,6 +9,7 @@ const base = "https://aviv.sh";
 export default defineConfig({
   site: base,
   integrations: [icon(), sitemap()],
+  prefetch: { prefetchAll: true, defaultStrategy: "hover" },
 
   vite: {
     plugins: [tailwindcss()],

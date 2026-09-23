@@ -3,17 +3,21 @@ import BlogCard from "../components/cards/BlogCard.astro";
 import BackLink from "../components/common/BackLink.astro";
 import SectionHeader from "../components/ui/SectionHeader.astro";
 import StaticLayout from "../layouts/StaticLayout.astro";
+import { getAllPosts } from "../utils";
 
-const blogs = Object.values(import.meta.glob("./posts/*.md", { eager: true }));
+const posts = getAllPosts();
 ---
 
-<StaticLayout title="Blog">
-  <BackLink href="/" label="Portfolio" />
+<StaticLayout title="Blog" description="Writing by Aviv Keller.">
+  <BackLink href="/" label="Home" />
   <SectionHeader
-    title="Blog Posts"
-    subtitle="Insights on technology, security, and software development"
+    as="h1"
+    title="Blog"
+    subtitle="Posts I've written here and elsewhere. Entries marked with a source open on that site."
   />
-  <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
-    {blogs.map((post) => <BlogCard post={post} />)}
+  <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+    {posts.map((post) => (
+      <BlogCard post={post} />
+    ))}
   </div>
 </StaticLayout>

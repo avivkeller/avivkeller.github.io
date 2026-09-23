@@ -9,29 +9,26 @@ const {
 } = Astro.props;
 
 const variants = {
-  primary:
-    "bg-gradient-to-r from-red-600 to-red-700 text-white hover:from-red-700 hover:to-red-800 shadow-lg hover:shadow-xl",
+  primary: "bg-brand text-white hover:bg-brand-deep",
   secondary:
-    "bg-white text-gray-700 hover:text-red-600 shadow-md hover:shadow-lg border border-gray-200",
-  outline:
-    "border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white",
-  ghost: "text-gray-600 hover:text-red-600 hover:bg-red-50",
+    "border border-stone-900 text-stone-900 hover:border-brand hover:text-brand",
+  ghost: "text-stone-700 hover:bg-brand-tint hover:text-brand",
 };
 
 const sizes = {
-  sm: "px-4 py-2 text-sm",
-  md: "px-6 py-3 text-base",
-  lg: "px-8 py-4 text-lg",
-  xl: "px-10 py-5 text-xl",
+  sm: "h-9 px-3.5 text-sm",
+  md: "h-10 px-4 text-sm",
+  lg: "h-11 px-5 text-base",
 };
 
 const baseClasses =
-  "inline-flex items-center justify-center font-semibold rounded-full transition-all duration-300 hover:scale-105";
+  "inline-flex items-center justify-center gap-2 rounded-sm font-semibold whitespace-nowrap transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand";
 const classes = `${baseClasses} ${variants[variant]} ${sizes[size]} ${className}`;
 
 const Component = href ? "a" : "button";
+const rel = target === "_blank" ? "noopener noreferrer" : undefined;
 ---
 
-<Component class={classes} {...href ? { href, target } : {}} {...props}>
+<Component class={classes} {...(href ? { href, target, rel } : {})} {...props}>
   <slot />
 </Component>

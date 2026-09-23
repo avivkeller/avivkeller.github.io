@@ -1,2 +1,32 @@
 @import "tailwindcss";
-@config "../../tailwind.config.mjs";
+
+/* Self-hosted type. Bricolage for display, IBM Plex Sans for everything else. */
+@import "@fontsource-variable/bricolage-grotesque";
+@import "@fontsource/ibm-plex-sans/latin-400.css";
+@import "@fontsource/ibm-plex-sans/latin-500.css";
+@import "@fontsource/ibm-plex-sans/latin-600.css";
+
+@theme {
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display:
+    "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
+
+  /* Brand red and its supporting tints. The red clears 4.5:1 on white and on the tint. */
+  --color-brand: #c8102e;
+  --color-brand-deep: #8c0b21;
+  --color-brand-tint: #fbf1f1;
+  --color-brand-rule: #ecd0d2;
+}
+
+@layer base {
+  html {
+    font-optical-sizing: auto;
+  }
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+  }
+}

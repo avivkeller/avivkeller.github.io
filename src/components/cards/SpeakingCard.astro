@@ -1,0 +1,45 @@
+---
+import type { SpeakingEngagement } from "../../types";
+import { formatMonth, isUpcoming } from "../../utils";
+import Badge from "../ui/Badge.astro";
+import Icon from "../ui/Icon.astro";
+
+const { engagement } = Astro.props as { engagement: SpeakingEngagement };
+
+const roleLabels: Record<SpeakingEngagement["role"], string> = {
+  speaker: "Speaker",
+  attendee: "Attendee",
+};
+const upcoming = isUpcoming(engagement);
+---
+
+<li class="pb-8 last:pb-0">
+  <p class="text-sm font-medium text-brand-deep tabular-nums">
+    {formatMonth(engagement.date)}
+    {engagement.location && ` • ${engagement.location}`}
+  </p>
+  <div class="mt-1 flex flex-wrap items-center gap-2">
+    <h3 class="font-bold text-stone-900">
+      {engagement.url ? (
+        <a
+          href={engagement.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1.5 hover:text-brand"
+        >
+          {engagement.event}
+          <Icon name="mdi:open-in-new" size={14} class="text-stone-400" />
+        </a>
+      ) : (
+        engagement.event
+      )}
+    </h3>
+    <Badge variant={engagement.role === "speaker" ? "primary" : "neutral"}>
+      {roleLabels[engagement.role]}
+    </Badge>
+    {upcoming && <Badge variant="neutral">Upcoming</Badge>}
+  </div>
+  {engagement.talk && (
+    <p class="mt-1 text-sm text-stone-600">{engagement.talk}</p>
+  )}
+</li>

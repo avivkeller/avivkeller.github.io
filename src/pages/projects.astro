@@ -6,13 +6,19 @@ import { projects } from "../data";
 import StaticLayout from "../layouts/StaticLayout.astro";
 ---
 
-<StaticLayout title="Projects">
-  <BackLink href="/" label="Portfolio" />
+<StaticLayout
+  title="Projects"
+  description="Open source libraries and tools by Aviv Keller."
+>
+  <BackLink href="/" label="Home" />
   <SectionHeader
-    title="My Projects"
-    subtitle="A collection of open source projects, tools, and contributions to the developer community"
+    as="h1"
+    title="Projects"
+    subtitle="Open source libraries and tools I've written or maintain."
   />
-  <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-    {projects.map((project) => <ProjectCard project={project} />)}
+  <div class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+    {projects.map((project) => (
+      <ProjectCard project={project} />
+    ))}
   </div>
 </StaticLayout>

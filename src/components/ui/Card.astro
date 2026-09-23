@@ -1,26 +1,17 @@
 ---
-const {
-  href,
-  target = "_self",
-  variant = "default",
-  class: className = "",
-  ...props
-} = Astro.props;
-
-const variants = {
-  default: "bg-white shadow-lg hover:shadow-xl",
-  flat: "bg-white border border-gray-200 hover:border-gray-300",
-};
+const { href, target = "_self", class: className = "", ...props } = Astro.props;
 
 const baseClasses =
-  "block rounded-2xl transition-all duration-300 hover:-translate-y-1";
-const classes = `${baseClasses} ${variants[variant]} ${className}`;
+  "group block rounded-sm border border-stone-200 bg-white transition-colors";
+const interactive = href
+  ? "hover:border-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+  : "";
+const classes = `${baseClasses} ${interactive} ${className}`;
 
 const Component = href ? "a" : "div";
+const rel = target === "_blank" ? "noopener noreferrer" : undefined;
 ---
 
-<Component class={classes} {...href ? { href, target } : {}} {...props}>
-  <div class="relative z-10">
-    <slot />
-  </div>
+<Component class={classes} {...(href ? { href, target, rel } : {})} {...props}>
+  <slot />
 </Component>

@@ -1,21 +1,12 @@
 ---
-const { variant = "primary", size = "sm", class: className = "" } = Astro.props;
+const { variant = "primary", class: className = "" } = Astro.props;
 
 const variants = {
-  primary: "bg-red-100 text-red-800",
-  secondary: "bg-gray-100 text-gray-800",
-  success: "bg-emerald-100 text-emerald-800",
-  warning: "bg-orange-100 text-orange-800",
-  danger: "bg-red-100 text-red-800",
+  primary: "bg-brand-tint text-brand-deep",
+  neutral: "bg-stone-100 text-stone-700",
 };
 
-const sizes = {
-  xs: "px-2 py-0.5 text-xs",
-  sm: "px-2.5 py-0.5 text-sm",
-  md: "px-3 py-1 text-base",
-};
-
-const classes = `inline-flex items-center font-medium rounded-full ${variants[variant]} ${sizes[size]} ${className}`;
+const classes = `inline-flex items-center gap-1 rounded-sm px-1.5 py-0.5 text-xs font-medium ${variants[variant]} ${className}`;
 ---
 
 <span class={classes}>

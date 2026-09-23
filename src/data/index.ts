@@ -41,22 +41,21 @@ export const navigation: NavigationItem[] = [
   { href: "/achievements", title: "Achievements" },
   {
     href: "https://github.com/sponsors/avivkeller",
-    title: "Donate",
+    title: "Sponsor",
     target: "_blank",
   },
 ];
 
 export const siteConfig = {
   name: "Aviv Keller",
-  title: "Aviv Keller | Developer & Security Enthusiast",
-  description: "Aviv is a software developer and cybersecurity enthusiast.",
-  author: {
-    name: "Aviv Keller",
-    twitter: "@aviv_keller",
-    email: "me@aviv.sh",
-  },
+  description:
+    "Aviv Keller is a Node.js collaborator, webpack TSC member, and security researcher.",
+  twitter: "@aviv_keller",
+  email: "me@aviv.sh",
 };
 
 export { projects } from "./projects";
 export { achievements } from "./achievements";
 export { workExperience } from "./experience";
+export { speaking } from "./speaking";
+export { externalPosts } from "./posts";
