@@ -2,6 +2,18 @@ import type { WorkExperience } from "../types";
 
 export const workExperience: WorkExperience[] = [
   {
+    company: "Primer",
+    positions: [
+      {
+        title: "Software Engineer Intern",
+        duration: "2026 - Present",
+      },
+    ],
+    type: "internship",
+    technologies: [],
+    website: "https://primer.com",
+  },
+  {
     company: "OpenJS Foundation",
     positions: [
       {
