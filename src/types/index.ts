@@ -1,5 +1,3 @@
-import type { ImageMetadata } from "astro";
-
 export interface SocialLink {
   href: string;
   icon: string;
@@ -11,10 +9,14 @@ export interface Project {
   description: string;
   /** Shown when the project belongs to an organization, e.g. "Collaborator". */
   role?: string;
-  image?: ImageMetadata;
   technologies?: string[];
-  githubLink: string;
+  githubLink?: string;
+  npmLink?: string;
   website?: string;
+  stars?: number;
+  /** npm downloads over the last month. */
+  downloads?: number;
+  isNew?: boolean;
 }
 
 export interface Achievement {
