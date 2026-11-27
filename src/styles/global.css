@@ -1,16 +1,13 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
-/* Self-hosted type. Bricolage for display, IBM Plex Sans for everything else. */
-@import "@fontsource-variable/bricolage-grotesque";
-@import "@fontsource/ibm-plex-sans/latin-400.css";
-@import "@fontsource/ibm-plex-sans/latin-500.css";
-@import "@fontsource/ibm-plex-sans/latin-600.css";
+/* The fonts are configured in astro.config.mjs and loaded by <Font /> in BaseLayout. */
+@theme inline {
+  --font-sans: var(--font-plex);
+  --font-display: var(--font-bricolage);
+}
 
 @theme {
-  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-display:
-    "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
-
   /* Brand red and its supporting tints. The red clears 4.5:1 on white and on the tint. */
   --color-brand: #c8102e;
   --color-brand-deep: #8c0b21;

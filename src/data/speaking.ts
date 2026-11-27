@@ -2,12 +2,12 @@ import type { SpeakingEngagement } from "../types";
 
 export const speaking: SpeakingEngagement[] = [
   {
-    event: "JSNation 2026",
+    event: "JSNation US 2026",
     location: "New York, NY",
-    date: "2026-11",
+    date: "2026-11-16",
     role: "speaker",
     talk: "The Vulnerabilities Hiding in Your AI Workflow",
-    url: "https://jsnation.com",
+    url: "https://jsnation.us",
   },
   {
     event: "Google Summer of Code Mentor Summit",

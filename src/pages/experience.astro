@@ -3,7 +3,13 @@ import SpeakingCard from "../components/cards/SpeakingCard.astro";
 import WorkExperienceCard from "../components/cards/WorkExperienceCard.astro";
 import BackLink from "../components/common/BackLink.astro";
 import SectionHeader from "../components/ui/SectionHeader.astro";
-import { achievements, projects, speaking, workExperience } from "../data";
+import {
+  achievements,
+  maintainedCount,
+  speaking,
+  workExperience,
+  writingCount,
+} from "../data";
 import StaticLayout from "../layouts/StaticLayout.astro";
 import { byDateDesc, isCve } from "../utils";
 
@@ -12,8 +18,8 @@ const acknowledgementCount = achievements.length - cveCount;
 const sortedSpeaking = [...speaking].sort(byDateDesc);
 
 const facts = [
-  { value: projects.length, label: "Open source projects" },
-  { value: cveCount, label: "CVEs" },
+  { value: maintainedCount, label: "Open source projects" },
+  { value: writingCount, label: "Articles written" },
   { value: acknowledgementCount, label: "Acknowledgements and awards" },
   {
     value: speaking.filter((s) => s.role === "speaker").length,
@@ -34,7 +40,7 @@ const facts = [
     {facts.map((fact) => (
       <div class="border-b border-stone-200 py-5 pr-4">
         <dd class="font-display text-4xl font-bold text-brand tabular-nums">
-          {fact.value}
+          {fact.value}+
         </dd>
         <dt class="mt-1 text-sm text-stone-600">{fact.label}</dt>
       </div>

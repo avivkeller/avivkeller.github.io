@@ -14,13 +14,15 @@ import {
   speaking,
   socialLinks,
   siteConfig,
+  blogPosts,
+  writingCount,
 } from "../data";
 import MainLayout from "../layouts/MainLayout.astro";
-import { byDateDesc, getAllPosts } from "../utils";
+import { byDateDesc } from "../utils";
 
 const featuredProjects = projects.slice(0, 3);
 const featuredAchievements = achievements.slice(0, 6);
-const recentBlogs = getAllPosts().slice(0, 3);
+const recentBlogs = blogPosts.slice(0, 3);
 const featuredExperience = workExperience.slice(0, 2);
 const recentSpeaking = speaking
   .filter((s) => s.role === "speaker")
@@ -86,12 +88,12 @@ const recentSpeaking = speaking
   </Section>
 
   {recentBlogs.length > 0 && (
-    <Section id="blog">
+    <Section id="writings">
       <SectionHeader
-        title="Writing"
-        subtitle="Posts I've written here and elsewhere."
-        href="/blog"
-        linkText="All posts"
+        title="Writings"
+        subtitle="Blog posts and articles I've written, here and elsewhere."
+        href="/writings"
+        linkText={`All ${writingCount} writings`}
       />
       <div class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
         {recentBlogs.map((post) => (

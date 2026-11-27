@@ -6,9 +6,16 @@ import Icon from "../ui/Icon.astro";
 
 const { project } = Astro.props as { project: Project };
 
-const stars = (project.stars ?? 0) >= 10 ? project.stars : undefined;
-const downloads =
-  (project.downloads ?? 0) >= 100 ? project.downloads : undefined;
+/** Hides counts too small to be worth showing. */
+const atLeast = (min: number, count?: number) =>
+  (count ?? 0) >= min ? count : undefined;
+
+const stars = atLeast(10, project.stars);
+const downloads = atLeast(100, project.downloads);
+const newPackages = project.items?.filter((item) => item.isNew).length;
+const itemCount = project.items?.length ?? 0;
+const itemNames = project.itemNames ?? { other: "items" };
+const itemsLabel = `${itemCount} ${itemNames[new Intl.PluralRules("en").select(itemCount)] ?? itemNames.other}`;
 
 const compact = new Intl.NumberFormat("en", { notation: "compact" });
 
@@ -24,67 +31,136 @@ const links = [
 ].filter((link) => link.href);
 ---
 
-<Card class="relative flex h-full flex-col overflow-hidden">
-  {project.isNew && (
-    <span class="pointer-events-none absolute top-3 -right-8 w-28 rotate-45 bg-brand py-0.5 text-center text-[10px] font-bold tracking-wider text-white uppercase shadow-sm">
-      New
-    </span>
+<div class="relative h-full">
+  {project.items && (
+    <>
+      <div
+        aria-hidden="true"
+        class="absolute inset-0 translate-x-2 translate-y-2 rounded-sm border border-stone-200 bg-white"
+      />
+      <div
+        aria-hidden="true"
+        class="absolute inset-0 translate-x-1 translate-y-1 rounded-sm border border-stone-200 bg-white"
+      />
+    </>
   )}
-  <div class="flex flex-1 flex-col p-5">
-    <div
-      class={`flex flex-wrap items-center gap-2 ${project.isNew ? "pr-10" : ""}`}
-    >
-      <h3 class="text-lg font-bold text-stone-900">{project.title}</h3>
-      {project.role && <Badge variant="neutral">{project.role}</Badge>}
-    </div>
-    <p class="mt-1.5 flex-1 text-sm leading-relaxed text-stone-600">
-      {project.description}
-    </p>
-
-    {project.technologies && (
-      <ul class="mt-4 flex flex-wrap gap-1.5">
-        {project.technologies.map((tech) => (
-          <li>
-            <Badge>{tech}</Badge>
-          </li>
-        ))}
-      </ul>
+  <Card class="relative flex h-full flex-col overflow-hidden">
+    {project.isNew && (
+      <span class="pointer-events-none absolute top-3 -right-8 w-28 rotate-45 bg-brand py-0.5 text-center text-[10px] font-bold tracking-wider text-white uppercase shadow-sm">
+        {newPackages ? `${newPackages} New` : "New"}
+      </span>
     )}
+    <div class="flex flex-1 flex-col p-5">
+      <div
+        class={`flex flex-wrap items-center gap-2 ${project.isNew ? "pr-10" : ""}`}
+      >
+        <h3 class="text-lg font-bold text-stone-900">{project.title}</h3>
+        {project.role && <Badge variant="neutral">{project.role}</Badge>}
+      </div>
+      <p class="mt-1.5 flex-1 text-sm leading-relaxed text-stone-600">
+        {project.description}
+      </p>
 
-    <div class="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-stone-100 pt-4 text-sm">
-      {links.map((link) => (
-        <a
-          href={link.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-1.5 font-semibold text-stone-700 hover:text-brand"
-        >
-          <Icon name={link.icon} size={link.size} />
-          {link.label}
-        </a>
-      ))}
-      {(!!stars || !!downloads) && (
-        <div class="ml-auto flex items-center gap-3 text-xs text-stone-500 tabular-nums">
-          {!!stars && (
-            <span
-              class="inline-flex items-center gap-1"
-              title={`${stars.toLocaleString("en")} GitHub stars`}
-            >
-              <Icon name="mdi:star-outline" size={14} />
-              {compact.format(stars)}
-            </span>
-          )}
-          {!!downloads && (
-            <span
-              class="inline-flex items-center gap-1"
-              title={`${downloads.toLocaleString("en")} npm downloads last month`}
-            >
-              <Icon name="mdi:download" size={14} />
-              {compact.format(downloads)}/mo
-            </span>
-          )}
-        </div>
+      {project.technologies && (
+        <ul class="mt-4 flex flex-wrap gap-1.5">
+          {project.technologies.map((tech) => (
+            <li>
+              <Badge>{tech}</Badge>
+            </li>
+          ))}
+        </ul>
       )}
+
+      {project.items && (
+        <details class="group/items mt-4 text-sm">
+          <summary class="inline-flex cursor-pointer list-none items-center gap-1 font-semibold text-stone-700 hover:text-brand [&::-webkit-details-marker]:hidden">
+            <Icon
+              name="mdi:chevron-right"
+              size={16}
+              class="transition-transform group-open/items:rotate-90"
+            />
+            {itemsLabel}
+          </summary>
+          <ul class="mt-2 max-h-72 divide-y divide-stone-100 overflow-y-auto pr-1">
+            {project.items.map((item) => {
+              const itemDownloads = atLeast(100, item.downloads);
+              const itemStars = atLeast(10, item.stars);
+              return (
+                <li class="flex items-center gap-2 py-1.5">
+                  <a
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={item.description}
+                    class="min-w-0 truncate font-medium text-stone-700 hover:text-brand"
+                  >
+                    {item.name}
+                  </a>
+                  {item.isNew ? (
+                    <span class="ml-auto shrink-0 rounded-sm bg-brand px-1 text-[10px] font-bold tracking-wider text-white uppercase">
+                      New
+                    </span>
+                  ) : itemDownloads ? (
+                    <span
+                      class="ml-auto inline-flex shrink-0 items-center gap-1 text-xs text-stone-500 tabular-nums"
+                      title={`${itemDownloads.toLocaleString("en")} npm downloads last month`}
+                    >
+                      <Icon name="mdi:download" size={14} />
+                      {compact.format(itemDownloads)}/mo
+                    </span>
+                  ) : (
+                    !!itemStars && (
+                      <span
+                        class="ml-auto inline-flex shrink-0 items-center gap-1 text-xs text-stone-500 tabular-nums"
+                        title={`${itemStars.toLocaleString("en")} GitHub stars`}
+                      >
+                        <Icon name="mdi:star-outline" size={14} />
+                        {compact.format(itemStars)}
+                      </span>
+                    )
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+        </details>
+      )}
+
+      <div class="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-stone-100 pt-4 text-sm">
+        {links.map((link) => (
+          <a
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 font-semibold text-stone-700 hover:text-brand"
+          >
+            <Icon name={link.icon} size={link.size} />
+            {link.label}
+          </a>
+        ))}
+        {(!!stars || !!downloads) && (
+          <div class="ml-auto flex items-center gap-3 text-xs text-stone-500 tabular-nums">
+            {!!stars && (
+              <span
+                class="inline-flex items-center gap-1"
+                title={`${stars.toLocaleString("en")} GitHub stars`}
+              >
+                <Icon name="mdi:star-outline" size={14} />
+                {compact.format(stars)}
+              </span>
+            )}
+            {!!downloads && (
+              <span
+                class="inline-flex items-center gap-1"
+                title={`${downloads.toLocaleString("en")} npm downloads last month`}
+              >
+                <Icon name="mdi:download" size={14} />
+                {compact.format(downloads)}/mo
+              </span>
+            )}
+          </div>
+        )}
+      </div>
     </div>
-  </div>
-</Card>
+  </Card>
+</div>

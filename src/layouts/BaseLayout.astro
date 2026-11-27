@@ -1,7 +1,6 @@
 ---
-import plexUrl from "@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-400-normal.woff2?url";
-import bricolageUrl from "@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-wght-normal.woff2?url";
 import { SEO } from "astro-seo";
+import { Font } from "astro:assets";
 
 import { siteConfig } from "../data";
 import "../styles/global.css";
@@ -28,20 +27,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
       }}
     />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="preload"
-      href={bricolageUrl}
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href={plexUrl}
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
+    <Font cssVariable="--font-bricolage" preload />
+    <Font cssVariable="--font-plex" preload={[{ weight: 400 }]} />
     <link rel="sitemap" href="/sitemap-index.xml" />
   </head>
   <body class="flex min-h-screen flex-col bg-white font-sans text-stone-800 antialiased">

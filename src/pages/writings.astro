@@ -1,0 +1,85 @@
+---
+import BlogCard from "../components/cards/BlogCard.astro";
+import BackLink from "../components/common/BackLink.astro";
+import Icon from "../components/ui/Icon.astro";
+import SectionHeader from "../components/ui/SectionHeader.astro";
+import { articles, blogPosts } from "../data";
+import StaticLayout from "../layouts/StaticLayout.astro";
+
+// Grouped by the top-level section of the site they're on, in its order.
+const articleGroups = Map.groupBy(
+  articles,
+  ({ source, section }) => `${source} › ${section[0]}`,
+);
+---
+
+<StaticLayout
+  title="Writings"
+  description="Blog posts and articles by Aviv Keller."
+>
+  <BackLink href="/" label="Home" />
+  <SectionHeader
+    as="h1"
+    title="Writings"
+    subtitle="Blog posts and articles I've written, here and elsewhere."
+  />
+
+  <section id="blog-posts" class="mb-14 scroll-mt-20">
+    <SectionHeader as="h2" title="Blog posts" />
+    <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+      {blogPosts.map((post) => (
+        <BlogCard post={post} />
+      ))}
+    </div>
+  </section>
+
+  {articles.length > 0 && (
+    <section id="articles" class="scroll-mt-20">
+      <SectionHeader
+        as="h2"
+        title="Articles"
+        subtitle="Guides and documentation I've written or co-written."
+      />
+      <div class="grid grid-cols-1 gap-x-10 gap-y-8 lg:grid-cols-2">
+        {[...articleGroups].map(([group, items]) => (
+          <div>
+            <h3 class="border-b-2 border-brand pb-2 text-lg font-bold text-stone-900">
+              {group}
+            </h3>
+            <ul class="divide-y divide-stone-100">
+              {items.map((article) => (
+                <li class="py-3">
+                  <a
+                    href={article.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="group block"
+                  >
+                    <span class="inline-flex items-center gap-1.5 font-semibold text-stone-800 group-hover:text-brand">
+                      {article.title}
+                      <Icon
+                        name="mdi:open-in-new"
+                        size={13}
+                        class="text-stone-400"
+                      />
+                    </span>
+                    {article.section.length > 1 && (
+                      <span class="ml-2 text-xs text-stone-500">
+                        {article.section.slice(1).join(" › ")}
+                      </span>
+                    )}
+                    {article.description && (
+                      <p class="mt-1 line-clamp-2 text-sm leading-relaxed text-stone-600">
+                        {article.description}
+                      </p>
+                    )}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+</StaticLayout>

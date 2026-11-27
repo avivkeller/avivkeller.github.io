@@ -1,0 +1,40 @@
+---
+import { getCollection, render } from "astro:content";
+
+import BackLink from "../../components/common/BackLink.astro";
+import { blogPosts } from "../../data";
+import StaticLayout from "../../layouts/StaticLayout.astro";
+import { formatDate } from "../../utils";
+
+export async function getStaticPaths() {
+  return (await getCollection("posts")).map((post) => ({
+    params: { id: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const { readingTime } = blogPosts.find(
+  ({ url }) => url === `/posts/${post.id}/`,
+)!;
+---
+
+<StaticLayout title={post.data.title} description={post.data.description}>
+  <BackLink href="/writings" label="Writings" />
+  <article class="mx-auto max-w-3xl">
+    <header class="mb-8">
+      <h1 class="text-4xl leading-tight font-extrabold tracking-tight text-stone-900 sm:text-5xl">
+        {post.data.title}
+      </h1>
+      <p class="mt-3 flex flex-wrap items-center gap-x-2 text-sm text-stone-500">
+        <time datetime={post.data.date}>{formatDate(post.data.date)}</time>
+        <span aria-hidden="true">·</span>
+        <span>{readingTime}</span>
+      </p>
+    </header>
+    <div class="prose prose-stone max-w-none prose-headings:font-display prose-a:text-brand">
+      <Content />
+    </div>
+  </article>
+</StaticLayout>

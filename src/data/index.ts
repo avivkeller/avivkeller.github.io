@@ -37,7 +37,7 @@ export const socialLinks: SocialLink[] = [
 export const navigation: NavigationItem[] = [
   { href: "/projects", title: "Projects" },
   { href: "/experience", title: "Experience" },
-  { href: "/blog", title: "Blog" },
+  { href: "/writings", title: "Writings" },
   { href: "/achievements", title: "Achievements" },
   {
     href: "https://github.com/sponsors/avivkeller",
@@ -50,12 +50,12 @@ export const siteConfig = {
   name: "Aviv Keller",
   description:
     "Aviv Keller is a Node.js collaborator, webpack TSC member, and security researcher.",
-  twitter: "@aviv_keller",
+  twitter: "@avivkeller",
   email: "me@aviv.sh",
 };
 
-export { projects } from "./projects";
+export { maintainedCount, projects } from "./projects";
 export { achievements } from "./achievements";
 export { workExperience } from "./experience";
 export { speaking } from "./speaking";
-export { externalPosts } from "./posts";
+export { articles, blogPosts, writingCount } from "./writings";

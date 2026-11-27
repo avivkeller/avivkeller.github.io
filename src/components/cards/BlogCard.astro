@@ -34,7 +34,9 @@ const external = Boolean(post.source);
   <h3 class="mt-2 text-lg font-bold text-stone-900 transition-colors group-hover:text-brand">
     {post.title}
   </h3>
-  <p class="mt-1.5 text-sm leading-relaxed text-stone-600">
-    {post.description}
-  </p>
+  {post.description && (
+    <p class="mt-1.5 line-clamp-3 text-sm leading-relaxed text-stone-600">
+      {post.description}
+    </p>
+  )}
 </Card>
