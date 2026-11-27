@@ -20,6 +20,10 @@ export const workExperience: WorkExperience[] = [
         duration: "2026 - Present",
       },
       {
+        title: "Webpack GSoC Mentor",
+        duration: "2026",
+      },
+      {
         title: "Webpack Core",
         duration: "2025 - Present",
       },
